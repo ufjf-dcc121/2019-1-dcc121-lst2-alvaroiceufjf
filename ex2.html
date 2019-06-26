@@ -5,6 +5,52 @@
     <title>Lista 2 Exercício 2</title>
 </head>
 <body>
+    <form name="lista">
+            <div><label>Valor:<input name="valor" type="number"  /></label></div>
+            <label><input type="submit" value="Empilhar" /></label>
+            <label><input type="reset" value="Desempilhar"  /></label>
+        
+    </form>
+    
+    <ol>
+        
+    </ol>
+
+    <script>
+            var formLista = document.forms.lista;
+            var lista = document.querySelector("ol");
+    
+            formLista.addEventListener("submit", processaCadastro);
+            formLista.addEventListener("reset", limpaLista);
+            
+            
+    
+            function processaCadastro(e){
+                e.preventDefault();
+                var valor = Number(formLista.valor.value);
+                jogaValorNaLista(valor);
+                formLista.reset();
+                formLista.valor.focus();
+    
+    
+            }
+            function jogaValorNaLista(valor){
+                var liValor = document.createElement("li");
+                liValor.textContent = valor;
+                lista.appendChild(liValor);
+    
+    
+    
+            }
+            
+            
+
+            function limpaLista(){
+                lista.removeChild("li");
+            }
+        </script>
+
+
     
 </body>
 </html>
