@@ -19,6 +19,46 @@
         Estudantes
     </ul>
 
+    <script>
+            var formCadastro = document.forms.cadastro;
+            var lstAdultos = document.getElementById("adultos")
+            var lstEstudantes = document.getElementById("estudantes");
+    
+            formCadastro.addEventListener("submit", processaCadastro);
+            
+            
+    
+            function processaCadastro(e){
+                e.preventDefault();
+                var nome = formCadastro.nome.value;
+                var idade = Number(formCadastro.idade.value);
+                if(idade >= 18){
+                    cadastraAdulto(nome, idade);
+                }else{
+                    cadastraEstudante(nome, idade);
+                }
+                formCadastro.reset();
+                formCadastro.quantidade.focus();
+            }
+
+            function cadastraAdulto(nome, idade){
+                var info = nome +"-"+ idade;
+                var linha = document.createElement("li");
+                linha.appendChild(info);
+                lstAdultos.appendChild(linha);
+    
+            }
+
+            function cadastraEstudante(nome, idade){
+                var info = nome +"-"+ idade;
+                var linha = document.createElement("li");
+                linha.appendChild(info);
+                lstEstudantes.appendChild(linha);
+    
+            }
+    
+    </script>
+
     
 </body>
 </html>
