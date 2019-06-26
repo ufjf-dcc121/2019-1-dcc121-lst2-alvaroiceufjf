@@ -14,28 +14,76 @@
     </form>
     
     <table border="1">
-            <thead>
-            <tr>
-                <td>Nome</td>
-                <td>Idade</td>
-            </tr> 
-            </thead>
-            <tbody>
-             <tr>
-                <td>2</td>
-                <td>Macarrao</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>Arroz</td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>Tomate</td>
-            </tr>
-            </tbody>
+        <thead>
+        <tr>
+            <td>Nome</td>
+            <td>item</td>
+        </tr> 
+         </thead>
+         <tbody>
+         <tr>
+            <td>2</td>
+            <td>Macarrao</td>
+         </tr>
+         <tr>
+             <td>3</td>
+             <td>Arroz</td>
+         </tr>
+         <tr>
+            <td>4</td>
+            <td>Tomate</td>
+         </tr>
+         </tbody>
             
-        </table>
+    </table>
+
+    <script>
+            var formCadastro = document.forms.cadastro;
+            var corpoTabela = document.querySelector("tbody");
+            var contador = 3;
+    
+            formCadastro.addEventListener("submit", processaCadastro);
+            
+            
+    
+            function processaCadastro(e){
+                e.preventDefault();
+                var quantidade = Number(formCadastro.quantidade.value);
+                var item = formCadastro.item.value;
+                jogaLinhaNaTabela(quantidade, item);
+                contador= contador + 1;
+                formCadastro.reset();
+                formCadastro.quantidade.focus();
+    
+    
+            }
+            function jogaLinhaNaTabela(quantidade, item){
+                var tdQuantidade = document.createElement("td");
+                tdQuantidade.textContent = quantidade;
+                var tdItem = document.createElement("td");
+                tdItem.textContent = item;
+                var trLinha = document.createElement("tr");
+                trLinha.appendChild(tdQuantidade);
+                trLinha.appendChild(tdItem);
+                corpoTabela.appendChild(trLinha);
+    
+    
+    
+            }
+            
+            formCadastro.addEventListener("reset", limpaLista);
+
+            function limpaLista(contador){
+                var tabela = document.getElementsByTagName('tbody')[0];
+                var linhas = document.getElementsByTagName('tr');
+                for(;contador < 0; contador--){
+                    tabela.removeChild(itens[contador]);
+
+                }
+            }
+        </script>
+
+
     
 </body>
 </html>
