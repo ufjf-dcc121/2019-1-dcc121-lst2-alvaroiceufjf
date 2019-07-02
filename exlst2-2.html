@@ -7,7 +7,7 @@
 <body>
         <form name="cadastroAnimal">
             <div><label>Animal:<input name="animal" type="text"  /></label></div>
-            <div><label>Altura:<input name="altura" type="number"  /></label></div>
+            <div><label>Altura (em cm):<input name="altura" type="number"  /></label></div>
             <div><label>Peso (em kg):<input name="peso" type="number"  /></label></div>
             <div><label>Velocidade (em km/h):<input name="velocidade" type="number"  /></label></div>
             <div><label>Idade Máx.:<input name="idade" type="number"  /></label></div>
@@ -27,11 +27,51 @@
             </thead>
             <tbody>
 
-                
+
             </tbody>
 
 
         </table>
+
+        <script>
+            var formCadastro = document.forms.cadastroAnimal;
+            var corpoTabela = document.querySelector("tbody");
+
+            formCadastro.addEventListener("submit", processaCadastro);
+
+            function processaCadastro(e){
+                e.preventDefault();
+                var animal = formCadastro.animal.value;
+                var altura = Number(formCadastro.altura.value);
+                var peso = Number(formCadastro.peso.value);
+                var velocidade = Number(formCadastro.velocidade.value);
+                var idade = Number(formCadastro.idade.value);
+                jogaLinhaNaTabela(animal, altura, peso, velocidade, idade);
+                formCadastro.reset();
+                formCadastro.animal.focus();
+            }
+
+            function jogaLinhaNaTabela(animal, altura, peso, velocidade, idade){
+                var tdAnimal = document.createElement("td");
+                tdAnimal.textContent = animal;
+                var tdAltura = document.createElement("td");
+                tdAltura.textContent = altura;
+                var tdPeso = document.createElement("td");
+                tdPeso.textContent = peso;
+                var tdVelocidade = document.createElement("td");
+                tdVelocidade.textContent = velocidade;
+                var tdIdade = document.createElement("td");
+                tdIdade.textContent = idade;
+                var trLinha = document.createElement("tr");
+                trLinha.appendChild(tdAnimal);
+                trLinha.appendChild(tdAltura);
+                trLinha.appendChild(tdPeso);
+                trLinha.appendChild(tdVelocidade);
+                trLinha.appendChild(tdIdade);
+                corpoTabela.appendChild(trLinha);
+            }
+        
+        </script>
     
 </body>
 </html>
